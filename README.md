@@ -1,6 +1,7 @@
 # E-deal 
-an e-commerce application. 
-Lets you browse items, add them to cart and pay using your credit card information.
+A mini e-commerce app built with reactjs and the Commerce.js API-first headless backend. Its functionality extends to viewing products and their descriptions, adding products to a personalized cart and checking out products using a user's payment details.
+
+# Test
 You can test using the following credit card information
 4242424242424242
 cvc-242
