@@ -3,10 +3,10 @@ A mini e-commerce app built with reactjs and the Commerce.js API-first headless 
 
 # Test
 You can test using the following credit card information
-4242424242424242
-cvc-242
-mm/yy - any future date
-code - any combination of five numbers
+- 4242424242424242
+- cvc-242
+- mm/yy - any future date
+- code - any combination of five numbers
 
 # Hosted on
 - [Netlify](https://e-deal.netlify.app)
