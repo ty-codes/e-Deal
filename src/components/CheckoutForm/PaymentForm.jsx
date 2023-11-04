@@ -9,6 +9,7 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
 
 
 const PaymentForm = ({ checkoutToken, backStep, shippingData, onCaptureCheckout, nextStep, timeout}) => {
+    
     const [errorMsg, setErrorMsg] = useState('');
     
     const handleSubmit = async (e, elements, stripe) => {
@@ -16,10 +17,10 @@ const PaymentForm = ({ checkoutToken, backStep, shippingData, onCaptureCheckout,
         if (!stripe || !elements) return;
         const cardElement = elements.getElement(CardElement);
 
-        const {error, paymentMethod} = await stripe.createPaymentMethod({type: 'card', card: cardElement });
+        const {error} = await stripe.createPaymentMethod({type: 'card', card: cardElement });
 
         if(error) {
-            console.log('Error during payment', error);
+            
             setErrorMsg(error.message)
         } else {
             const orderData = {
@@ -41,11 +42,24 @@ const PaymentForm = ({ checkoutToken, backStep, shippingData, onCaptureCheckout,
                     shipping_method: shippingData.shippingOption
                 },
                 payment: {
-                    gateway: 'stripe',
-                    stripe: {
-                        payment_method_id: paymentMethod.id
+                    gateway: "test_gateway",
+                    card: {
+                        number: "4242 4242 4242 4242",
+                        expiry_month: "01",
+                        expiry_year: "2023",
+                        cvc:"123",
+                        postal_zip_code: "94103"
                     }
+                },
+                billing: {
+                    name: 'Jane Doe',
+                    street: 'The palms',
+                    town_city: 'Lagos',
+                    county_state: 'Lagos',
+                    postal_zip_code: '111222',
+                    country: 'Nigeria'
                 }
+                
             }
             
             onCaptureCheckout(checkoutToken.id, orderData);

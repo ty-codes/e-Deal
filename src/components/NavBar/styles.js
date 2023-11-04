@@ -17,6 +17,10 @@ export default makeStyles((theme) => ({
     display: 'flex',
     textDecoration: 'none',
   },
+  customBadge: {
+    backgroundColor: 'black',
+    color: 'white'
+  },
   image: {
     marginRight: '10px',
   },

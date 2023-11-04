@@ -11,17 +11,17 @@ const NavBar = ({totalItems}) => {
 
     return (
 			<>
-				<AppBar position='fixed' className={classes.appBar} color='inherit'>
+				<AppBar position='fixed' className={classes.appBar}  style={{background: '#fc721e'}} color='inherit'>
 						<Toolbar>
 								<Typography component={Link} to='/' variant='h6' className={classes.title} color='inherit'>
-										<img src={logo} alt='e-buy' height='25px' className={classes.image} />
+										<img src={logo} alt='e-deal' height='25px' className={classes.image} />
 										e-Deal
 								</Typography>
 								<div className={classes.grow} />
 								{ location.pathname === '/' && (
 									<div className={classes.button}>
 										<IconButton component={Link} to='/cart' aria-label='Show cart items' color='inherit'>
-												<Badge overlap='rectangular' badgeContent={totalItems} color='secondary'>
+												<Badge classes={{badge: classes.customBadge}} overlap='rectangular' badgeContent={totalItems} color='secondary'>
 														<ShoppingCart />
 												</Badge>
 										</IconButton>

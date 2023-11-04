@@ -6,6 +6,10 @@ export default makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing(3),
+
+    [theme.breakpoints.down('sm')]: {
+      padding: theme.spacing(1)
+    },
   },
   root: {
     flexGrow: 1,

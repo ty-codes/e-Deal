@@ -15,15 +15,28 @@ const Checkout = ({cart, order, onCaptureCheckout, error}) => {
     const [shippingData, setShippingData] = useState({});
     const [isFinished, setIsFinished] = useState(false);
     const classes = useStyles();
+    
     const navigate= useNavigate();
+    const [newOrder, setNewOrder] = useState({})
+
+    useEffect(() => {
+       
+            setNewOrder(order)
+        
+    }, [order])
 
     useEffect(() => {
         const generateToken = async() => {
             try {
-                const token = await commerce.checkout.generateToken(cart.id, { type: 'cart'});
                 
-                setCheckoutToken(token);
+                if(cart.total_items>0) {
+                    const token = await commerce.checkout.generateToken(cart.id, { type: 'cart'});
+                                    
+                    setCheckoutToken(token);
+                }
+                
             } catch(err) {
+                
                 navigate('/');
             }
         }
@@ -34,9 +47,8 @@ const Checkout = ({cart, order, onCaptureCheckout, error}) => {
     const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
 
     const next = (data) => {
-        
         setShippingData(data);
-
+        
         nextStep();
     }
 
@@ -44,15 +56,15 @@ const Checkout = ({cart, order, onCaptureCheckout, error}) => {
     const timeout = () => {
         setTimeout(() => {
             setIsFinished(true)
-        }, 3000)
+        }, 2000)
     }
 
-    let Confirmation = () => order.customer ? (
+    let Confirmation = () => newOrder.customer ? (
         <>
             <div>
-                <Typography variant='h5'>Thank you for shopping with us, {order.customer.firstname} {order.customer.lastname}</Typography>
+                <Typography variant='h5'>Thank you for shopping with us, {newOrder.customer.firstname} {newOrder.customer.lastname}</Typography>
                 <Divider className={classes.divider} />
-                <Typography variant='subtitle2'>Order ref: {order.customer_reference}</Typography>
+                <Typography variant='subtitle2'>Order ref: {newOrder.customer_reference}</Typography>
             </div>
             <br />
             <Button component={Link} to='/' variant='outlined' type='button'>Back to Home</Button>
