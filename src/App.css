@@ -1,0 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+body {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+.MuiDialog-container {
+    width: 50% !important;
+    margin: auto !important;
+    min-width: 450px !important;
+}
+
+.MuiDialogContent-root {
+    padding: 0 !important;
+}
+
+.MuiDialog-paper {
+    margin: 0 !important;
+}
+
+.MuiGrid-spacing-xs-2 > .MuiGrid-item {
+    position: relative;
+}
+
+.text-description p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0;
+}
+
+@media (max-width: 450px) {
+    .MuiDialog-container {
+        width: 95% !important;
+        min-width: auto !important;
+    }
+}

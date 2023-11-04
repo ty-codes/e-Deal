@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Products, NavBar, Cart, Checkout } from  './components';
 import { commerce } from './lib/commerce';
 import {CircularProgress } from '@material-ui/core';
-
+import './App.css';
 
 const App = () => {
   const [products, setProducts] = useState();
@@ -44,20 +44,19 @@ const App = () => {
     const newCart = await commerce.cart.refresh();
     
     setCart(newCart)
+    
   }
 
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
     try {
 
-      // const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
-      // console.log(incomingOrder)
-      setTimeout(() => {
-        handleEmptyCart()
-      }, 2000)
       setOrder(await commerce.checkout.capture(checkoutTokenId, newOrder));
+      
       refreshCart();
     } catch (error) {
       setErrorMsg(error.data.error.message)
+     
+      refreshCart();
     }
   }
 
@@ -73,7 +72,7 @@ const App = () => {
       justifyContent: 'center',
       alignItems: 'center',
     }}>
-      <CircularProgress />
+      <CircularProgress style={{'color': 'orange'}} />
     </div>);
   return (
     <Router>
